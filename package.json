@@ -8,5 +8,8 @@
   "devDependencies": {
     "parcel": "^1.8.1",
     "standard": "^11.0.1"
+  },
+  "dependencies": {
+    "shoelace-css": "^1.0.0-beta24"
   }
 }
