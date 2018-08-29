@@ -1,0 +1,18 @@
+#inputGroup {
+  display: block;
+}
+
+.errorMsg {
+  margin-top: -5px;
+  font-size: .9rem;
+  color: gray;
+}
+
+span {
+  margin-top: 0px;
+}
+
+.new-line {
+  display: block;
+}
+

@@ -1,13 +1,20 @@
-// import 'shoelace-css/dist/shoelace.css'
+import 'shoelace-css/dist/shoelace.css'
+import './styles.css'
 
 document.getElementById('parking-form').addEventListener('submit', function (event) {
   event.preventDefault()
   validateName()
+  // the three function calls which follow would not be called if I could get the tri-validation input-group one to work.
   validateCarYear()
   validateCarMake()
   validateCarModel()
-  validateStart()
+  // the called function below corresponds to the input group validation code (on hold below)
   // validateCarFields()
+  validateStart()
+  validateDays()
+  validateCard()
+  validateCvv()
+  validateExp()
   //
 })
 
@@ -19,16 +26,18 @@ function markInvalid (enteredInfo) {
   // create div, give class name and specify text (message), append
   let errorDiv = document.createElement('div')
   errorDiv.classList.add('errorMsg')
-  // errorDiv.innerHTML = `<span style='display:block white-space:pre-line'>${enteredInfo.getAttribute('id')} field required!</span>`
-  errorDiv.innerHTML = `<span style="white-space: pre-line"> \n ${enteredInfo.getAttribute('id')} field required!</span>`
+  // Below, I was trying to get this input group to disply as block
+  // errorDiv.innerHTML = `<span style="white-space: pre-line"> \n ${enteredInfo.getAttribute('id')} field required!</span>`
+  errorDiv.innerHTML = `<span class='new-line'> \n ${enteredInfo.getAttribute('id')} field required!</span>`
   // console.log(errorDiv)
   enteredInfo.parentElement.appendChild(errorDiv)
 }
 
+// if errorDiv.innerHTML !== ''
+
 function markValid (enteredInfo) {
   enteredInfo.parentElement.classList.add('input-valid')
   enteredInfo.parentElement.classList.remove('input-invalid')
-  // enteredInfo.classList.remove('input-invalid')
 }
 
 function validateName () {
@@ -40,10 +49,18 @@ function validateName () {
     markInvalid(enteredInfo)
   } else {
     markValid(enteredInfo)
+  // below, attempt to clear error message alerts:
+  // let errorDiv = document.createElement('div')
+  // errorDiv.classList.remove()
   }
 }
-// ATTEMPT TO COMBINE CAR FIELD VALIDATION
-// function validateCarFields(enteredInfo) {
+// ATTEMPT TO COMBINE CAR FIELD VALIDATION AS UNIT
+
+// let carYearEntered = document.getElementById('car-year').value.trim()
+// let carMakeEntered = document.getElementById('car-make').value.trim()
+// let carModelEntered = document.getElementById('car-model').value.trim()
+
+// function validateCarFields (enteredInfo) {
 //   if ((carYearEntered === '') || (carMakeEntered === '') || (carModelEntered === '')) {
 //     enteredInfo.parentElement.classList.add('input-invalid')
 //     enteredInfo.parentElement.classList.remove('input-valid')
@@ -56,6 +73,7 @@ function validateName () {
 //   } else if ((carYearEntered !== '') && (carMakeEntered !== '') && (carModelEntered !== '')) {
 //     markValid(enteredInfo)
 //   }
+// }
 
 function validateCarYear () {
   let carYearEntered = document.getElementById('car-year').value.trim()
@@ -65,7 +83,7 @@ function validateCarYear () {
   if (carYearEntered === '') {
     markInvalid(enteredInfo)
     let errorDiv = document.createElement('div')
-    errorDiv.innerHTML = `<span style="white-space: pre-line"> \n ${enteredInfo.getAttribute('id')} field required!</span>`
+    errorDiv.innerHTML = `<span class="new-line"> \n ${enteredInfo.getAttribute('id')} field required!</span>`
   } else {
     markValid(enteredInfo)
   }
@@ -106,7 +124,54 @@ function validateStart () {
     markValid(enteredInfo)
   }
 }
-console.log('Where is the error?')
+
+function validateDays () {
+  let daysEntered = document.getElementById('days').value.trim()
+
+  let enteredInfo = document.getElementById('days')
+
+  if (daysEntered === '') {
+    markInvalid(enteredInfo)
+  } else {
+    markValid(enteredInfo)
+  }
+}
+
+function validateCard () {
+  let cardEntered = document.getElementById('credit-card').value.trim()
+
+  let enteredInfo = document.getElementById('credit-card')
+
+  if (cardEntered === '') {
+    markInvalid(enteredInfo)
+  } else {
+    markValid(enteredInfo)
+  }
+}
+
+function validateCvv () {
+  let cvvEntered = document.getElementById('cvv').value.trim()
+
+  let enteredInfo = document.getElementById('cvv')
+
+  if (cvvEntered === '') {
+    markInvalid(enteredInfo)
+  } else {
+    markValid(enteredInfo)
+  }
+}
+
+function validateExp () {
+  let expEntered = document.getElementById('expiration').value.trim()
+
+  let enteredInfo = document.getElementById('expiration')
+
+  if (expEntered === '') {
+    markInvalid(enteredInfo)
+  } else {
+    markValid(enteredInfo)
+  }
+}
 
 // var errorDiv = document.createElement('div')
 // errorDiv.classList.add('errorMsg')
@@ -115,8 +180,6 @@ console.log('Where is the error?')
 // var field = document.getElementById('name-field')
 // field.appendChild(errorDiv)
 // field.classList.add('input-invalid')
-
-// errorDiv()
 
 // let carYearEntered = document.getElementById('car-year').value.trim()
 // let carMakeEntered = document.getElementById('car-make').value.trim()
